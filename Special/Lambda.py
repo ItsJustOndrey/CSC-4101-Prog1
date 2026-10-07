@@ -9,4 +9,5 @@ class Lambda(Special):
 
     def print(self, t, n, p):
         # TODO: Implement this function.
-        pass
+        # (lambda params on the first line, body on its own lines.
+        Special.printIndented(t, n, p, 2)

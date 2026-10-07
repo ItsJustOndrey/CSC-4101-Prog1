@@ -9,4 +9,4 @@ class Regular(Special):
 
     def print(self, t, n, p):
         # TODO: Implement this function.
-        pass
+        Special.printRegular(t, n, p)

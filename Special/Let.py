@@ -9,4 +9,5 @@ class Let(Special):
 
     def print(self, t, n, p):
         # TODO: Implement this function.
-        pass
+        # (let on the first line, bindings and body on their own lines.
+        Special.printIndented(t, n, p, 1)
