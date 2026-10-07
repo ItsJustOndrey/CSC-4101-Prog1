@@ -38,6 +38,7 @@ class Scanner:
             ch = self.read()
 
             # TODO: Skip white space and comments
+            
 
             # Return None on EOF
             if ch == "":
