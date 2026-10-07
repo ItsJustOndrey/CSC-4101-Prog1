@@ -9,4 +9,5 @@ class Cond(Special):
 
     def print(self, t, n, p):
         # TODO: Implement this function.
-        pass
+        # (cond on the first line, each clause on its own line.
+        Special.printIndented(t, n, p, 1)

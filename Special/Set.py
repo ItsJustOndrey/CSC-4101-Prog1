@@ -9,5 +9,6 @@ class Set(Special):
     
     def print(self, t, n, p):
         # TODO: Implement this function.
-        pass
+        # (set! x exp) is printed on one line like a regular list.
+        Special.printRegular(t, n, p)
 

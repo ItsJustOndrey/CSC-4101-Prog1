@@ -9,4 +9,10 @@ class Define(Special):
 
     def print(self, t, n, p):
         # TODO: Implement this function.
-        pass
+        # (define (f args) body...) is printed like lambda;
+        # (define x exp) is printed on one line like a regular list.
+        rest = t.getCdr()
+        if rest.isPair() and rest.getCar().isPair():
+            Special.printIndented(t, n, p, 2)
+        else:
+            Special.printRegular(t, n, p)
