@@ -9,4 +9,5 @@ class If(Special):
 
     def print(self, t, n, p):
         # TODO: Implement this function.
-        pass
+        # (if test on the first line, each branch on its own line.
+        Special.printIndented(t, n, p, 2)

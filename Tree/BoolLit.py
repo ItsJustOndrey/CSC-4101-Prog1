@@ -33,12 +33,16 @@ class BoolLit(Node):
 
     def print(self, n, p=False):
         # There got to be a more efficient way to print n spaces.
-        for _ in range(n):
-            sys.stdout.write(' ')
+        sys.stdout.write(' ' * n)
         if self.boolVal:
-            sys.stdout.write("#t\n")
+            sys.stdout.write("#t")
         else:
-            sys.stdout.write("#f\n")
+            sys.stdout.write("#f")
+        if n >= 0:
+            sys.stdout.write('\n')
+
+    def isBool(self):
+        return True
 
 if __name__ == "__main__":
     b = BoolLit.getInstance(True)

@@ -9,4 +9,5 @@ class Begin(Special):
 
     def print(self, t, n, p):
         # TODO: Implement this function.
-        pass
+        # (begin on the first line, each expression on its own line.
+        Special.printIndented(t, n, p, 1)

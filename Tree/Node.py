@@ -22,6 +22,14 @@ class Node(ABC):
     # encode that in the sign bit of n. If you need additional parameters,
     # make sure that you define the method print in all the appropriate
     # subclasses of Node as well.
+    #
+    # We use the sign bit of n for one more bit of information:
+    #   n >= 0  the node goes on its own line: indent by n spaces first
+    #           and end with a newline.  Special forms use their own
+    #           indentation style.
+    #   n < 0   the node is printed inline (inside a regular list):
+    #           no indentation, no newline, and every list is printed
+    #           as a regular list.
     @abstractmethod
     def print(self, n, p=False):
         pass
@@ -48,13 +56,15 @@ class Node(ABC):
     # in class Cons.  After setCar, a Cons cell needs to be `parsed' again
     # using parseList.
     def getCar(self):
+        sys.stderr.write("Error: getCar called on a non-pair\n")
         return None
 
     def getCdr(self):
+        sys.stderr.write("Error: getCdr called on a non-pair\n")
         return None
 
     def setCar(self, a):
-        pass
+        sys.stderr.write("Error: setCar called on a non-pair\n")
 
     def setCdr(self, d):
-        pass
+        sys.stderr.write("Error: setCdr called on a non-pair\n")

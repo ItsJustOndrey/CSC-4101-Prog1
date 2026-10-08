@@ -20,12 +20,16 @@ class Nil(Node):
 
     def print(self, n, p=False):
         # There got to be a more efficient way to print n spaces.
-        for _ in range(n):
-            sys.stdout.write(' ')
+        sys.stdout.write(' ' * n)
         if p:
-            sys.stdout.write(")\n")
+            sys.stdout.write(")")
         else:
-            sys.stdout.write("()\n")
+            sys.stdout.write("()")
+        if n >= 0:
+            sys.stdout.write('\n')
+
+    def isNull(self):
+        return True
 
 if __name__ == "__main__":
     n = Nil.getInstance()
