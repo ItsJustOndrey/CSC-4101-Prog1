@@ -69,6 +69,13 @@ class Scanner:
                     return IdentToken(ch)
                 sys.stderr.write("Illegal identifier starting with '" + ch + "'\n")
                 return self.getNextToken()
+
+            if ch == '#':
+                next_ch = self.peek()
+                if next_ch != "" and next_ch not in ('t', 'f'):
+                    self.read()
+                    sys.stderr.write("Illegal character '" + next_ch + "' following #\n")
+                    return self.getNextToken()
             
             # Return None on EOF
             if ch == "":

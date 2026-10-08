@@ -67,8 +67,11 @@ class Parser:
             quoted = self.parseExp()
             if quoted is None:
                 self.__error("expected an expression after quote")
-            return None
-        return Cons(Ident("quote"), Cons(quoted, Nil.getInstance()))
+                return None
+            return Cons(Ident("quote"), Cons(quoted, Nil.getInstance()))
+
+        self.__error("unexpected token " + str(tt))
+        return self.parseExp()
 
     def parseRest(self):
         # TODO: write code for parsing a rest

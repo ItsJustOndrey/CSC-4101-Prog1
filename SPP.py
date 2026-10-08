@@ -21,7 +21,7 @@ if __name__ == "__main__":
         while tok != None:
             tt = tok.getType()
 
-            sys.stdout.write(str(tt))
+            sys.stdout.write(tt.name)
             if tt == TokenType.INT:
                 sys.stdout.write(", intVal = " + str(tok.getIntVal()) + "\n")
             elif tt == TokenType.STR:
