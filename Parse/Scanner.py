@@ -38,8 +38,38 @@ class Scanner:
             ch = self.read()
 
             # TODO: Skip white space and comments
-            
+            whitespace = " \t\n\r\f"
+            initial = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!$%&*/:<=>?^_~"
+            subsequent = initial + "0123456789+-.@"
+            def scan_identifier(first):
+                self.buf = [first.lower()]
+                while True:
+                    next_ch = self.peek()
+                    if next_ch != "" and next_ch in subsequent:
+                        self.buf.append(self.read().lower())
+                    else:
+                        break
+                return IdentToken("".join(self.buf))
 
+            while ch != "" and (ch in whitespace or ch == ';'):
+                if ch == ';':
+                    while ch != "" and ch not in "\n\r":
+                        ch = self.read()
+                else:
+                    ch = self.read()
+
+            # The existing identifier branch below handles uppercase
+            # letters. Handle other valid initial characters here.
+            if ch != "" and ch in initial and not ('A' <= ch <= 'Z'):
+                return scan_identifier(ch)
+
+            if ch in ('+', '-'):
+                next_ch = self.peek()
+                if next_ch == "" or next_ch in whitespace + '();"':
+                    return IdentToken(ch)
+                sys.stderr.write("Illegal identifier starting with '" + ch + "'\n")
+                return self.getNextToken()
+            
             # Return None on EOF
             if ch == "":
                 return None
@@ -75,6 +105,24 @@ class Scanner:
             elif ch == '"':
                 self.buf = []
                 # TODO: scan a string into the buffer variable buf
+                while True:
+                    ch = self.read()
+                    if ch == "":
+                        sys.stderr.write("Unexpected EOF in string\n")
+                        return None
+                    if ch == '"':
+                        break
+                    if ch == '\\':
+                        escaped = self.read()
+                        if escaped == "":
+                            sys.stderr.write("Unexpected EOF in string\n")
+                            return None
+                        if escaped not in ('"', '\\'):
+                            sys.stderr.write("Illegal string escape\n")
+                        self.buf.append(ch)
+                        self.buf.append(escaped)
+                    else:
+                        self.buf.append(ch)
     
                 return StrToken("".join(self.buf))
 
@@ -82,9 +130,11 @@ class Scanner:
             elif self.isDigit(ch):
                 i = ord(ch) - ord('0')
                 # TODO: scan the number and convert it to an integer
-
                 # make sure that the character following the integer
                 # is not removed from the input stream
+
+                while self.isDigit(self.peek()):
+                    i = i * 10 + ord(self.read()) - ord('0')
                 return IntToken(i)
     
             # Identifiers
@@ -93,10 +143,15 @@ class Scanner:
                 # for an identifier
                 self.buf = []
                 # TODO: scan an identifier into the buffer variable buf
-
-
                 # make sure that the character following the identifier
                 # is not removed from the input stream
+                self.buf.append(ch.lower())
+                while True:
+                    next_ch = self.peek()
+                    if next_ch != "" and next_ch in subsequent:
+                        self.buf.append(self.read().lower())
+                    else:
+                        break
                 return IdentToken("".join(self.buf))
 
             # Illegal character
