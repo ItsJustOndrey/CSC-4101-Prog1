@@ -1,8 +1,0 @@
-1,3c1,3
-< LPAREN
-< DOT
-< RPAREN
----
-> TokenType.LPAREN
-> TokenType.DOT
-> TokenType.RPAREN

@@ -1,0 +1,34 @@
+Group members
+Andre Bui abui10@lsu.edu
+Vathana Sovann vsovan1@lsu.edu
+
+SPP.py file can be found in path /prog1/CSC-4101-Prog1 due to cloning empty repository from Github for remote pair programming
+
+As prompted, we created a scanner, recursive descent parser,
+parse tree classes, and printing classes. This scanner reads
+tokens from input, parser builds trees using the nodes, and 
+the tree then tells which formatting to use for each print.
+
+AI Usage
+During the initial programming, we used AI to guide us through concepts connecting the printer, scanner, and parser for better understanding of how the program should tie together.
+
+During our testings, we found that there were 4 failures:
+
+Test0.-d
+test3.-d
+test9.-d 
+test20.scm
+
+For test 20.scm it failed because of formatting issues from code.
+We used AI to guide us through to pinpoint the source of the error
+and proceeded to change as needed for the tests. 
+
+For Test0.-d, test3.-d, and test9.-d the issue went beyond what was
+within the # TODO segments. Inside of the SPP.py file, the error
+occurred from the line 
+    sys.stdout.write(str(tt))
+causing the output to print TokenType.LPAREN when the reference prints LPAREN
+we changed it to
+    sys.stdout.write(tt.name)
+and the failed test was resolved.
+

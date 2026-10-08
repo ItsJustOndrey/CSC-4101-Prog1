@@ -1,18 +1,16 @@
 Running tests:
-Test0.-d: FAIL
-;;;Printing the tokens LPAREN, DOT, RPAREN failed.
------
-1,3c1,3
-< LPAREN
-< DOT
-< RPAREN
----
-> TokenType.LPAREN
-> TokenType.DOT
-> TokenType.RPAREN
------
+Test0.-d: SUCCESS
+Test1: SUCCESS
+test13.scm: SUCCESS
+test16.scm: SUCCESS
+test18.scm: SUCCESS
+Test2: SUCCESS
+test20.scm: SUCCESS
+Test3: SUCCESS
+test3.-d: SUCCESS
+test9.-d: SUCCESS
 
-0 tests succeeded
+10 tests succeeded
 0 tests were formatted incorrectly
-1 tests failed
+0 tests failed
 0 tests had errors
